@@ -38,3 +38,7 @@ The folder structure is:
 - `services` used to save all the logic of the API including routes, its separated by folders for each entity, in this case there are two folders named `search/` and `user` with a routes file and a controller
 - `utils/` used to expose some methods that can be use anywhere in the project, in this case there are two methods, one to apply the routes and another one to apply the middlewares, these methods are used in the `server.ts` file
 - `.server.ts` this file initialize all the application including the connection to the database
+
+### Docker
+
+The `Dockerfile` and `docker-compose.yml` were incluede in the project but still in development in order to run with `docker-compose up`.
