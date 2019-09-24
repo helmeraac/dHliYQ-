@@ -1,0 +1,213 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Restaurants API"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "bearer": {
+      "name": "token",
+      "in": "header",
+      "type": "apiKey"
+    }
+  },
+  "paths": {
+    "/restaurants": {
+      "get": {
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "Get restaurants by city id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Restaurant"
+            }
+          },
+          "500": {
+            "description": "Error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "cityId",
+            "type": "number",
+            "in": "query",
+            "description": "The id of the city",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/city": {
+      "get": {
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "City"
+        ],
+        "summary": "Search a city",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/City"
+            }
+          },
+          "500": {
+            "description": "Error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "The string of the city to search",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/user": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create an user",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "The user fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ]
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login with an user",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          },
+          "500": {
+            "description": "Error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "The user fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Restaurant": {
+      "type": "object",
+      "properties": {
+        "results_found": {
+          "type": "string"
+        },
+        "results_start": {
+          "type": "string"
+        },
+        "results_shown": {
+          "type": "string"
+        },
+        "restaurants": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "City": {
+      "type": "object",
+      "properties": {
+        "location_suggestions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
