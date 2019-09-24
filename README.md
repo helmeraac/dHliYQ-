@@ -1,7 +1,7 @@
 # Restaurants API
 
 This API was developed using `Typescript` and `MySQL` for database. Additional libraries are used for 
-development purposes
+development purposes. `Zomato` API is used to retrieve a list of restaurants and cities
 
 ### Requirements
 
